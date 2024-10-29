@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  archive:
+    name: Archive
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build fnalibs
+      run: ./build-fnalibs.sh
+
+    - name: Archive fnalibs
+      uses: actions/upload-artifact@v4
+      with:
+        name: fnalibs
+        path: fnalibs/
+
+    - name: Build fnalibs-apple
+      run: ./build-fnalibs-apple.sh
+
+    - name: Archive fnalibs-apple
+      uses: actions/upload-artifact@v4
+      with:
+        name: fnalibs-apple
+        path: fnalibs-apple/
