@@ -14,6 +14,8 @@ jobs:
 
     - name: Build fnalibs
       run: ./build-fnalibs.sh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Archive fnalibs
       uses: actions/upload-artifact@v4
@@ -21,8 +23,16 @@ jobs:
         name: fnalibs
         path: fnalibs/
 
+  archive-apple:
+    name: Archive (Apple)
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+
     - name: Build fnalibs-apple
       run: ./build-fnalibs-apple.sh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Archive fnalibs-apple
       uses: actions/upload-artifact@v4
