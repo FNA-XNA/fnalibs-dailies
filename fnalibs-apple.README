@@ -3,14 +3,17 @@ to target Apple platforms.
 
 These are the folders included:
 
-- osx: macOS Universal dynamic libraries, requires version 10.9 or newer
-- iphoneos: iOS static libraries (arm64 only), requires version 13 or newer
-- appletvos: tvOS static libraries (arm64 only), requires version 13 or newer
+- osx: macOS Universal dynamic libraries, requires version 10.11 or newer
+- iphoneos: iOS static libraries, requires version 13 or newer
+- appletvos: tvOS static libraries, requires version 13 or newer
+
+Libraries for the simulators are not provided.
 
 The library dependency list is as follows:
 
 - SDL3, used as the platform layer
 - FNA3D, used in the Graphics namespace
+    - For dynamic libraries, libspirv-cross-c-shared.0.dylib is used by FNA3D
     - For static libraries...
         - mojoshader.a is used by libFNA3D.a
         - libspirv-cross-* is used by mojoshader.a
