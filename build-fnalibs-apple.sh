@@ -30,7 +30,7 @@ mkdir -p fnalibs-apple/osx
 mv FAudio-SDL3-osx/libFAudio.0.dylib fnalibs-apple/osx/
 mv FNA3D-SDL3-osx/libFNA3D.0.dylib fnalibs-apple/osx/
 mv Theorafile-osx/libtheorafile.dylib fnalibs-apple/osx/
-#xattr -c fnalibs-apple/osx/*.dylib
+xattr -c fnalibs-apple/osx/*.dylib
 
 mkdir -p fnalibs-apple/iphoneos
 tar xvfz SDL-ios-arm64/dist/SDL3-3.1.5-iOS.tar.gz SDL3-3.1.5-iOS/lib/libSDL3.a
