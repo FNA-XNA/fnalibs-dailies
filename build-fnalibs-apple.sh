@@ -22,6 +22,11 @@ gh -R FNA-XNA/Theorafile run download ${workflow_id} -p 'Theorafile-osx'
 gh -R FNA-XNA/Theorafile run download ${workflow_id} -p 'Theorafile-iphoneos'
 gh -R FNA-XNA/Theorafile run download ${workflow_id} -p 'Theorafile-appletvos'
 
+workflow_id=$(gh -R KhronosGroup/SPIRV-Cross run list -b main --json databaseId --jq '.[0].databaseId')
+gh -R KhronosGroup/SPIRV-Cross run download ${workflow_id} -p 'macos-latest-binaries'
+gh -R KhronosGroup/SPIRV-Cross run download ${workflow_id} -p 'appletvos-binaries'
+gh -R KhronosGroup/SPIRV-Cross run download ${workflow_id} -p 'iphoneos-binaries'
+
 mkdir -p fnalibs-apple
 cp fnalibs-apple.README fnalibs-apple/README.txt
 
@@ -33,6 +38,7 @@ hdiutil detach /Volumes/SDL3\ 3.1.5
 mv FAudio-SDL3-osx/libFAudio.0.dylib fnalibs-apple/osx/
 mv FNA3D-SDL3-osx/libFNA3D.0.dylib fnalibs-apple/osx/
 mv Theorafile-osx/libtheorafile.dylib fnalibs-apple/osx/
+mv macos-latest-binaries/lib/libspirv-cross-c-shared.0.dylib fnalibs-apple/osx/
 xattr -c fnalibs-apple/osx/*.dylib
 
 mkdir -p fnalibs-apple/iphoneos
@@ -42,6 +48,7 @@ mv FAudio-SDL3-iphoneos/libFAudio.a fnalibs-apple/iphoneos/
 mv FNA3D-SDL3-iphoneos/libFNA3D.a fnalibs-apple/iphoneos/
 mv FNA3D-SDL3-iphoneos/libmojoshader.a fnalibs-apple/iphoneos/
 mv Theorafile-iphoneos/libtheorafile.a fnalibs-apple/iphoneos/
+# TODO: Which libspirv-cross libraries do we need?
 
 mkdir -p fnalibs-apple/appletvos
 tar xvfz SDL-tvos-arm64/dist/SDL3-3.1.5-tvOS.tar.gz SDL3-3.1.5-tvOS/lib/libSDL3.a
@@ -50,3 +57,4 @@ mv FAudio-SDL3-appletvos/libFAudio.a fnalibs-apple/appletvos/
 mv FNA3D-SDL3-appletvos/libFNA3D.a fnalibs-apple/appletvos/
 mv FNA3D-SDL3-appletvos/libmojoshader.a fnalibs-apple/appletvos/
 mv Theorafile-appletvos/libtheorafile.a fnalibs-apple/appletvos/
+# TODO: Which libspirv-cross libraries do we need?
