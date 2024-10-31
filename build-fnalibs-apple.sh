@@ -27,8 +27,8 @@ cp fnalibs-apple.README fnalibs-apple/README.txt
 
 mkdir -p fnalibs-apple/osx
 hdiutil attach SDL-macos-framework/dist/SDL3-3.1.5-macOS.dmg
-cp /Volumes/SDL3\ 3.1.5/SDL3.framework/SDL3 fnalibs-apple-osx/libSDL3.0.dylib
-install_name_tool -id "@rpath/libSDL3.0.dylib" fnalibs-apple-osx/libSDL3.0.dylib
+cp /Volumes/SDL3\ 3.1.5/SDL3.framework/SDL3 fnalibs-apple/osx/libSDL3.0.dylib
+install_name_tool -id "@rpath/libSDL3.0.dylib" fnalibs-apple/osx/libSDL3.0.dylib
 hdiutil detach /Volumes/SDL3\ 3.1.5
 mv FAudio-SDL3-osx/libFAudio.0.dylib fnalibs-apple/osx/
 mv FNA3D-SDL3-osx/libFNA3D.0.dylib fnalibs-apple/osx/
