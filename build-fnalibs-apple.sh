@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SDL_MINOR_VERSION=1
+SDL_PATCH_VERSION=7
+
 set -ex
 
 workflow_id=$(gh -R libsdl-org/SDL run list -b main --json databaseId --jq '.[0].databaseId')
@@ -31,10 +34,10 @@ mkdir -p fnalibs-apple
 cp fnalibs-apple.README fnalibs-apple/README.txt
 
 mkdir -p fnalibs-apple/osx
-hdiutil attach SDL-macos-framework/dist/SDL3-3.1.7-macOS.dmg
-cp /Volumes/SDL3\ 3.1.7/SDL3.framework/SDL3 fnalibs-apple/osx/libSDL3.0.dylib
+hdiutil attach SDL-macos-framework/dist/SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-macOS.dmg
+cp /Volumes/SDL3\ 3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION/SDL3.framework/SDL3 fnalibs-apple/osx/libSDL3.0.dylib
 install_name_tool -id "@rpath/libSDL3.0.dylib" fnalibs-apple/osx/libSDL3.0.dylib
-hdiutil detach /Volumes/SDL3\ 3.1.7
+hdiutil detach /Volumes/SDL3\ 3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION
 mv FAudio-SDL3-osx/libFAudio.0.dylib fnalibs-apple/osx/
 mv FNA3D-SDL3-osx/libFNA3D.0.dylib fnalibs-apple/osx/
 mv Theorafile-osx/libtheorafile.dylib fnalibs-apple/osx/
@@ -42,8 +45,8 @@ mv macos-latest-binaries/lib/libspirv-cross-c-shared.0.dylib fnalibs-apple/osx/
 xattr -c fnalibs-apple/osx/*.dylib
 
 mkdir -p fnalibs-apple/iphoneos
-tar xvfz SDL-ios-arm64/dist/SDL3-3.1.7-iOS.tar.gz SDL3-3.1.7-iOS/lib/libSDL3.a
-mv SDL3-3.1.7-iOS/lib/libSDL3.a fnalibs-apple/iphoneos/
+tar xvfz SDL-ios-arm64/dist/SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-iOS.tar.gz SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-iOS/lib/libSDL3.a
+mv SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-iOS/lib/libSDL3.a fnalibs-apple/iphoneos/
 mv FAudio-SDL3-iphoneos/libFAudio.a fnalibs-apple/iphoneos/
 mv FNA3D-SDL3-iphoneos/libFNA3D.a fnalibs-apple/iphoneos/
 mv FNA3D-SDL3-iphoneos/libmojoshader.a fnalibs-apple/iphoneos/
@@ -51,8 +54,8 @@ mv Theorafile-iphoneos/libtheorafile.a fnalibs-apple/iphoneos/
 # TODO: Which libspirv-cross libraries do we need?
 
 mkdir -p fnalibs-apple/appletvos
-tar xvfz SDL-tvos-arm64/dist/SDL3-3.1.7-tvOS.tar.gz SDL3-3.1.7-tvOS/lib/libSDL3.a
-mv SDL3-3.1.7-tvOS/lib/libSDL3.a fnalibs-apple/appletvos/
+tar xvfz SDL-tvos-arm64/dist/SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-tvOS.tar.gz SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-tvOS/lib/libSDL3.a
+mv SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-tvOS/lib/libSDL3.a fnalibs-apple/appletvos/
 mv FAudio-SDL3-appletvos/libFAudio.a fnalibs-apple/appletvos/
 mv FNA3D-SDL3-appletvos/libFNA3D.a fnalibs-apple/appletvos/
 mv FNA3D-SDL3-appletvos/libmojoshader.a fnalibs-apple/appletvos/

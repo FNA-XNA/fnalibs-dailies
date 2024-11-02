@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SDL_MINOR_VERSION=1
+SDL_PATCH_VERSION=7
+
 set -ex
 
 workflow_id=$(gh -R libsdl-org/SDL run list -b main --json databaseId --jq '.[0].databaseId')
@@ -26,8 +29,8 @@ mkdir -p fnalibs
 cp fnalibs.README fnalibs/README.txt
 
 mkdir -p fnalibs/lib64
-tar xvfz SDL-slrsniper/dist/SDL3-3.1.7-Linux.tar.gz SDL3-3.1.7-Linux/lib/libSDL3.so.0.1.6
-mv SDL3-3.1.7-Linux/lib/libSDL3.so.0.1.6 fnalibs/lib64/libSDL3.so.0
+tar xvfz SDL-slrsniper/dist/SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Linux.tar.gz SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Linux/lib/libSDL3.so.0.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION
+mv SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Linux/lib/libSDL3.so.0.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION fnalibs/lib64/libSDL3.so.0
 chmod +x fnalibs/lib64/libSDL3.so.0
 strip -S fnalibs/lib64/libSDL3.so.0
 mv FAudio-SDL3-lib64/libFAudio.so.0 fnalibs/lib64/
@@ -35,15 +38,15 @@ mv FNA3D-SDL3-lib64/libFNA3D.so.0 fnalibs/lib64/
 mv Theorafile-lib64/libtheorafile.so fnalibs/lib64/
 
 mkdir -p fnalibs/x86
-unzip SDL-VC-x86/dist/SDL3-3.1.7-Windows-VC.zip SDL3-3.1.7-Windows-VC/bin/SDL3.dll
-mv SDL3-3.1.7-Windows-VC/bin/SDL3.dll fnalibs/x86/
+unzip SDL-VC-x86/dist/SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC.zip SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC/bin/SDL3.dll
+mv SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC/bin/SDL3.dll fnalibs/x86/
 mv FAudio-SDL3-x86/FAudio.dll fnalibs/x86/
 mv FNA3D-SDL3-x86/FNA3D.dll fnalibs/x86/
 mv Theorafile-x86/libtheorafile.dll fnalibs/x86/
 
 mkdir -p fnalibs/x64
-unzip SDL-VC-x64/dist/SDL3-3.1.7-Windows-VC.zip SDL3-3.1.7-Windows-VC/bin/SDL3.dll
-mv SDL3-3.1.7-Windows-VC/bin/SDL3.dll fnalibs/x64/
+unzip SDL-VC-x64/dist/SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC.zip SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC/bin/SDL3.dll
+mv SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC/bin/SDL3.dll fnalibs/x64/
 mv FAudio-SDL3-x64/FAudio.dll fnalibs/x64/
 mv FNA3D-SDL3-x64/FNA3D.dll fnalibs/x64/
 mv Theorafile-x64/libtheorafile.dll fnalibs/x64/
