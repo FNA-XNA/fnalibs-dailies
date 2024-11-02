@@ -42,7 +42,7 @@ mv macos-latest-binaries/lib/libspirv-cross-c-shared.0.dylib fnalibs-apple/osx/
 xattr -c fnalibs-apple/osx/*.dylib
 
 mkdir -p fnalibs-apple/iphoneos
-tar xvfz SDL-ios-arm64/dist/SDL3-3.1.7-iOS.tar.gz SDL3-3.1.5-iOS/lib/libSDL3.a
+tar xvfz SDL-ios-arm64/dist/SDL3-3.1.7-iOS.tar.gz SDL3-3.1.7-iOS/lib/libSDL3.a
 mv SDL3-3.1.7-iOS/lib/libSDL3.a fnalibs-apple/iphoneos/
 mv FAudio-SDL3-iphoneos/libFAudio.a fnalibs-apple/iphoneos/
 mv FNA3D-SDL3-iphoneos/libFNA3D.a fnalibs-apple/iphoneos/
@@ -51,7 +51,7 @@ mv Theorafile-iphoneos/libtheorafile.a fnalibs-apple/iphoneos/
 # TODO: Which libspirv-cross libraries do we need?
 
 mkdir -p fnalibs-apple/appletvos
-tar xvfz SDL-tvos-arm64/dist/SDL3-3.1.7-tvOS.tar.gz SDL3-3.1.5-tvOS/lib/libSDL3.a
+tar xvfz SDL-tvos-arm64/dist/SDL3-3.1.7-tvOS.tar.gz SDL3-3.1.7-tvOS/lib/libSDL3.a
 mv SDL3-3.1.7-tvOS/lib/libSDL3.a fnalibs-apple/appletvos/
 mv FAudio-SDL3-appletvos/libFAudio.a fnalibs-apple/appletvos/
 mv FNA3D-SDL3-appletvos/libFNA3D.a fnalibs-apple/appletvos/
