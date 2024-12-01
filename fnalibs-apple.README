@@ -13,9 +13,6 @@ The library dependency list is as follows:
 
 - SDL3, used as the platform layer
 - FNA3D, used in the Graphics namespace
-    - For dynamic libraries, libspirv-cross-c-shared.0.dylib is used by FNA3D
-    - For static libraries...
-        - mojoshader.a is used by libFNA3D.a
-        - libspirv-cross-* is used by mojoshader.a
+    - For static libraries, mojoshader.a is used by libFNA3D.a
 - FAudio, used in the Audio/Media namespaces
 - libtheorafile, only used for VideoPlayer
