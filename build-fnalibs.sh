@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SDL_MINOR_VERSION=1
-SDL_PATCH_VERSION=7
+SDL_PATCH_VERSION=9
 
 set -ex
 
