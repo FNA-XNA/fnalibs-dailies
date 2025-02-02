@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SDL_MINOR_VERSION=2
-SDL_PATCH_VERSION=1
+source VERSIONS
 
 set -ex
 
