@@ -5,6 +5,7 @@ These are the folders included:
 - x86: 32-bit Windows
 - x64: 64-bit Windows
 - lib64: Linux (64-bit only)
+- libaarch64: Linux ARM (64-bit only)
 
 The library dependency list is as follows:
 
