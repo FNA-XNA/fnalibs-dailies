@@ -12,6 +12,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Install cross binutils
+      run: sudo apt install -y binutils-aarch64-linux-gnu
+
     - name: Build fnalibs
       run: ./build-fnalibs.sh
       env:
