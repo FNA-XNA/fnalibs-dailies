@@ -43,8 +43,8 @@ mv FNA3D-lib64/libFNA3D.so.0 fnalibs/lib64/
 mv Theorafile-lib64/libtheorafile.so fnalibs/lib64/
 
 mkdir -p fnalibs/libaarch64
-tar xvfz SDL-steamrt3-arm64/dist/SDL3-3.3.0-Linux.tar.gz SDL3-3.3.0-Linux/lib/libSDL3.so.0.3.0
-mv SDL3-3.3.0-Linux/lib/libSDL3.so.0.3.0 fnalibs/libaarch64/libSDL3.so.0
+tar xvfz SDL-steamrt3-arm64/dist/SDL3-3.3.2-Linux.tar.gz SDL3-3.3.2-Linux/lib/libSDL3.so.0.3.2
+mv SDL3-3.3.2-Linux/lib/libSDL3.so.0.3.2 fnalibs/libaarch64/libSDL3.so.0
 chmod +x fnalibs/libaarch64/libSDL3.so.0
 aarch64-linux-gnu-strip -S fnalibs/libaarch64/libSDL3.so.0
 mv FAudio-libaarch64/libFAudio.so.0 fnalibs/libaarch64/
