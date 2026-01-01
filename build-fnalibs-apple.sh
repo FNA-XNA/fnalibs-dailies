@@ -4,7 +4,7 @@ source VERSIONS
 
 set -ex
 
-workflow_id=$(gh -R libsdl-org/SDL run list -b main --json databaseId --jq '.[0].databaseId')
+workflow_id=$(gh -R libsdl-org/SDL run list -b release-3.4.x --json databaseId --jq '.[0].databaseId')
 gh -R libsdl-org/SDL run download ${workflow_id} -p 'SDL-macos-framework'
 gh -R libsdl-org/SDL run download ${workflow_id} -p 'SDL-ios-arm64'
 gh -R libsdl-org/SDL run download ${workflow_id} -p 'SDL-tvos-arm64'
