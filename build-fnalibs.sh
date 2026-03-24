@@ -62,3 +62,6 @@ mv SDL3-3.$SDL_MINOR_VERSION.$SDL_PATCH_VERSION-Windows-VC/bin/SDL3.dll fnalibs/
 mv FAudio-x64/FAudio.dll fnalibs/x64/
 mv FNA3D-x64/FNA3D.dll fnalibs/x64/
 mv Theorafile-x64/libtheorafile.dll fnalibs/x64/
+
+curl -L -o microsoft.direct3d.direct3d12.1.619.1.nupkg https://www.nuget.org/api/v2/package/Microsoft.Direct3D.D3D12/1.619.1
+unzip -j -d fnalibs/D3D12 microsoft.direct3d.direct3d12.1.619.1.nupkg build/native/bin/x64/D3D12Core.dll
