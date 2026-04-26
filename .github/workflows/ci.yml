@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
   schedule:
     - cron: '0 0 * * *'
