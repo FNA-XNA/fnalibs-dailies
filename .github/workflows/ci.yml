@@ -45,3 +45,28 @@ jobs:
       with:
         name: fnalibs-apple
         path: fnalibs-apple/
+
+  archive-wasm:
+    name: Archive (WASM)
+    strategy:
+      matrix:
+        pthread_enabled: [true, false]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Emscripten
+      run: |
+        sudo apt update
+        sudo apt install -y emscripten
+
+    - name: Build fnalibs-wasm
+      run: ./build-fnalibs-wasm.sh pthread_enabled=${{ matrix.pthread_enabled }}
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Archive fnalibs-wasm
+      uses: actions/upload-artifact@v4
+      with:
+        name: fnalibs-wasm
+        path: fnalibs-wasm/
