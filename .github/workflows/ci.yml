@@ -60,6 +60,10 @@ jobs:
         sudo apt update
         sudo apt install -y emscripten
 
+
+    - name: Make build-fnalibs-wasm.sh executable
+      run: chmod +x ./build-fnalibs-wasm.sh
+
     - name: Build fnalibs-wasm
       run: ./build-fnalibs-wasm.sh pthread_enabled=${{ matrix.pthread_enabled }}
       env:
