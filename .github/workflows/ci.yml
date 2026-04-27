@@ -48,9 +48,6 @@ jobs:
 
   archive-wasm-mt:
     name: Archive (WASM) - Multithreaded
-    strategy:
-      matrix:
-        pthread_enabled: [true, false]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -78,9 +75,6 @@ jobs:
 
   archive-wasm-st:
     name: Archive (WASM) - Single threaded
-    strategy:
-      matrix:
-        pthread_enabled: [true, false]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
