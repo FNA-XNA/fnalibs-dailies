@@ -44,7 +44,7 @@ CFLAGS=$PTHREAD_FLAGS emcmake cmake -S .. \
 -GNinja
 ninja
 
-cd ..
+cd ../..
 
 # TEMPORARY: use my own forks of these libraries until the PRs are merged and new releases are made
 workflow_id=$(gh -R ValorZard/FAudio run list -b add-wasm-build --json databaseId --jq '.[0].databaseId')
