@@ -46,8 +46,8 @@ jobs:
         name: fnalibs-apple
         path: fnalibs-apple/
 
-  archive-wasm:
-    name: Archive (WASM)
+  archive-wasm-mt:
+    name: Archive (WASM) - Multithreaded
     strategy:
       matrix:
         pthread_enabled: [true, false]
@@ -66,17 +66,42 @@ jobs:
       run: chmod +x ./build-fnalibs-wasm.sh
 
     - name: Build fnalibs-wasm
-      run: |
-        if [ "${{ matrix.pthread_enabled }}" = "true" ]; then
-          ./build-fnalibs-wasm.sh --pthread-enabled
-        else
-          ./build-fnalibs-wasm.sh
-        fi
+      run: ./build-fnalibs-wasm.sh --pthread-enabled
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Archive fnalibs-wasm
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.pthread_enabled == 'true' && 'fnalibs-wasm-mt' || 'fnalibs-wasm-st' }}
-        path: ${{ matrix.pthread_enabled == 'true' && 'fnalibs-wasm-mt/' || 'fnalibs-wasm-st/' }}
+        name: fnalibs-wasm-multithreaded
+        path: fnalibs-wasm-mt/
+
+  archive-wasm-st:
+    name: Archive (WASM) - Single threaded
+    strategy:
+      matrix:
+        pthread_enabled: [true, false]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: emscripten-core/setup-emsdk@v15
+      with:
+        version: 3.1.56
+
+    - name: Verify Emscripten
+      run: emcc -v
+
+    - name: Make build-fnalibs-wasm.sh executable
+      run: chmod +x ./build-fnalibs-wasm.sh
+
+    - name: Build fnalibs-wasm
+      run: ./build-fnalibs-wasm.sh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Archive fnalibs-wasm
+      uses: actions/upload-artifact@v4
+      with:
+        name: fnalibs-wasm-singlethreaded
+        path: fnalibs-wasm-st/
