@@ -44,6 +44,7 @@ CFLAGS=$PTHREAD_FLAGS emcmake cmake -S .. \
 -GNinja
 ninja
 
+cd ..
 
 # TEMPORARY: use my own forks of these libraries until the PRs are merged and new releases are made
 workflow_id=$(gh -R ValorZard/FAudio run list -b add-wasm-build --json databaseId --jq '.[0].databaseId')
@@ -63,9 +64,8 @@ fi
 # TODO: add a workflow for Theorafile as well, and download it here
 
 mkdir -p fnalibs-wasm
-# TODO: Figure out why the README isn't copying correctly, and add it back in here
-# cp fnalibs-wasm.README fnalibs-wasm/README.txt
-mv SDL/emscripten-build/prefix/lib/libSDL3.a fnalibs-wasm/
+cp fnalibs-wasm.README fnalibs-wasm/README.txt
+mv SDL/emscripten-build/libSDL3.a  fnalibs-wasm/
 mv FAudio-wasm-*/libFAudio.a fnalibs-wasm/
 mv FNA3D-wasm-*/libFNA3D.a fnalibs-wasm/
 
