@@ -65,7 +65,12 @@ jobs:
       run: chmod +x ./build-fnalibs-wasm.sh
 
     - name: Build fnalibs-wasm
-      run: ./build-fnalibs-wasm.sh pthread_enabled=${{ matrix.pthread_enabled }}
+      run: |
+        if [ "${{ matrix.pthread_enabled }}" = "true" ]; then
+          bash ./build-fnalibs-wasm.sh --pthread-enabled
+        else
+          bash ./build-fnalibs-wasm.sh
+        fi
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
