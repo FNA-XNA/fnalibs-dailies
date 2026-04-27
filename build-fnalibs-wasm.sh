@@ -72,7 +72,7 @@ mkdir -p "$OUTDIR"
 # Always copy README from script dir
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cp "$SCRIPT_DIR/fnalibs-wasm.README" "$OUTDIR/README.txt"
-mv SDL/emscripten-build/libSDL3.a  "$OUTDIR/"
-mv FAudio-wasm-*/libFAudio.a "$OUTDIR/"
-mv FNA3D-wasm-*/libFNA3D.a "$OUTDIR/"
+cp SDL/emscripten-build/libSDL3.a  "$OUTDIR/"
+cp FAudio-wasm-*/libFAudio.a "$OUTDIR/"
+cp FNA3D-wasm-*/libFNA3D.a "$OUTDIR/"
 
