@@ -64,7 +64,7 @@ fi
 # TODO: add a workflow for Theorafile as well, and download it here
 
 mkdir -p fnalibs-wasm
-cp fnalibs-wasm.README fnalibs-wasm/README.txt
+#cp fnalibs-wasm.README fnalibs-wasm/README.txt
 mv SDL/emscripten-build/libSDL3.a  fnalibs-wasm/
 mv FAudio-wasm-*/libFAudio.a fnalibs-wasm/
 mv FNA3D-wasm-*/libFNA3D.a fnalibs-wasm/
