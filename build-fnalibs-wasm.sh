@@ -63,9 +63,16 @@ fi
 
 # TODO: add a workflow for Theorafile as well, and download it here
 
-mkdir -p fnalibs-wasm
-#cp fnalibs-wasm.README fnalibs-wasm/README.txt
-mv SDL/emscripten-build/libSDL3.a  fnalibs-wasm/
-mv FAudio-wasm-*/libFAudio.a fnalibs-wasm/
-mv FNA3D-wasm-*/libFNA3D.a fnalibs-wasm/
+if [ "$pthread_enabled" = true ]; then
+	OUTDIR=fnalibs-wasm-mt
+else
+	OUTDIR=fnalibs-wasm-st
+fi
+mkdir -p "$OUTDIR"
+# Always copy README from script dir
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp "$SCRIPT_DIR/fnalibs-wasm.README" "$OUTDIR/README.txt"
+mv SDL/emscripten-build/libSDL3.a  "$OUTDIR/"
+mv FAudio-wasm-*/libFAudio.a "$OUTDIR/"
+mv FNA3D-wasm-*/libFNA3D.a "$OUTDIR/"
 
