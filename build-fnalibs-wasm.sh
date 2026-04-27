@@ -75,4 +75,5 @@ cp "$SCRIPT_DIR/fnalibs-wasm.README" "$OUTDIR/README.txt"
 cp SDL/emscripten-build/libSDL3.a  "$OUTDIR/SDL3.a"
 cp FAudio-wasm-*/libFAudio.a "$OUTDIR/FAudio.a"
 cp FNA3D-wasm-*/libFNA3D.a "$OUTDIR/FNA3D.a"
+cp FNA3D-wasm-*/libmojoshader.a "$OUTDIR/libmojoshader.a"
 
