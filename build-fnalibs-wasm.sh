@@ -63,7 +63,8 @@ fi
 # TODO: add a workflow for Theorafile as well, and download it here
 
 mkdir -p fnalibs-wasm
-cp fnalibs-wasm.README fnalibs-wasm/README.txt
+# TODO: Figure out why the README isn't copying correctly, and add it back in here
+# cp fnalibs-wasm.README fnalibs-wasm/README.txt
 mv SDL/emscripten-build/prefix/lib/libSDL3.a fnalibs-wasm/
 mv FAudio-wasm-*/libFAudio.a fnalibs-wasm/
 mv FNA3D-wasm-*/libFNA3D.a fnalibs-wasm/
