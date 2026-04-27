@@ -26,8 +26,13 @@ git clone --depth 1 --branch release-3.4.x https://github.com/libsdl-org/SDL.git
 cd SDL
 mkdir emscripten-build
 cd emscripten-build
-PTHREAD_FLAGS=${pthread_enabled == true && "-pthread" || ""}
-PTHREAD_ENABLED=${pthread_enabled == true && "ON" || "OFF"}
+CFLAGS=""
+PTHREAD_FLAGS=""
+PTHREAD_ENABLED="OFF"
+if [ "$pthread_enabled" = true ]; then
+	PTHREAD_FLAGS="-pthread"
+	PTHREAD_ENABLED="ON"
+fi
 CFLAGS=$PTHREAD_FLAGS emcmake cmake -S .. \
 -DSDL_WERROR=ON \
 -DSDL_TESTS=OFF \
