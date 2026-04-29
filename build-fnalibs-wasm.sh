@@ -47,14 +47,14 @@ ninja
 cd ../..
 
 # TEMPORARY: use my own forks of these libraries until the PRs are merged and new releases are made
-workflow_id=$(gh -R FNA-XNA/FAudio run list -b add-wasm-build --json databaseId --jq '.[0].databaseId')
+workflow_id=$(gh -R FNA-XNA/FAudio run list -b master --json databaseId --jq '.[0].databaseId')
 if [[ $pthread_enabled == true ]]; then
     gh -R FNA-XNA/FAudio run download ${workflow_id} -p 'FAudio-wasm-mt'
 else
     gh -R FNA-XNA/FAudio run download ${workflow_id} -p 'FAudio-wasm-st'
 fi
 
-workflow_id=$(gh -R FNA-XNA/FNA3D run list -b add-wasm --json databaseId --jq '.[0].databaseId')
+workflow_id=$(gh -R FNA-XNA/FNA3D run list -b master --json databaseId --jq '.[0].databaseId')
 if [[ $pthread_enabled == true ]]; then
     gh -R FNA-XNA/FNA3D run download ${workflow_id} -p 'FNA3D-wasm-mt'
 else
