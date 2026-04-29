@@ -62,6 +62,8 @@ else
 fi
 
 # TODO: add a workflow for Theorafile as well, and download it here
+workflow_id=$(gh -R FNA-XNA/Theorafile run list -b master --json databaseId --jq '.[0].databaseId')
+gh -R FNA-XNA/Theorafile run download ${workflow_id} -p 'Theorafile-wasm'
 
 if [ "$pthread_enabled" = true ]; then
 	OUTDIR=fnalibs-wasm-mt
@@ -76,4 +78,5 @@ cp SDL/emscripten-build/libSDL3.a  "$OUTDIR/SDL3.a"
 cp FAudio-wasm-*/libFAudio.a "$OUTDIR/FAudio.a"
 cp FNA3D-wasm-*/libFNA3D.a "$OUTDIR/FNA3D.a"
 cp FNA3D-wasm-*/libmojoshader.a "$OUTDIR/libmojoshader.a"
+cp Theorafile-wasm/libtheorafile.a "$OUTDIR/libtheorafile.a"
 
