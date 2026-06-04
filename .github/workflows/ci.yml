@@ -6,16 +6,66 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
+  linux-sdl3-x86_64:
+    name: SDL3 (Linux x86_64)
+    runs-on: ubuntu-latest
+    container:
+      image: registry.gitlab.steamos.cloud/steamrt/sniper/sdk:latest
+    steps:
+    - name: Clone
+      uses: actions/checkout@v6
+      with:
+        repository: libsdl-org/SDL
+        ref: release-3.4.x
+    - name: Build
+      run: |
+        cmake -B release -G Ninja . -DCMAKE_BUILD_TYPE=Release
+        ninja -C release
+        strip -S release/libSDL3.so.0
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: SDL3-steamrt3-x86_64
+        path: release/libSDL3.so.0
+
+  linux-sdl3-aarch64:
+    name: SDL3 (Linux AArch64)
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:latest
+    steps:
+    - name: Clone
+      uses: actions/checkout@v6
+      with:
+        repository: libsdl-org/SDL
+        ref: release-3.4.x
+    - name: Build
+      run: |
+        cmake -B release -G Ninja . -DCMAKE_BUILD_TYPE=Release
+        ninja -C release
+        strip -S release/libSDL3.so.0
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: SDL3-steamrt3-aarch64
+        path: release/libSDL3.so.0
+
   archive:
     name: Archive
     runs-on: ubuntu-latest
+    needs: [linux-sdl3-x86_64, linux-sdl3-aarch64]
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install cross binutils
-      run: |
-        sudo apt update
-        sudo apt install -y binutils-aarch64-linux-gnu
+    - uses: actions/download-artifact@v4
+      with:
+        name: SDL3-steamrt3-x86_64
+        path: SDL3-steamrt3-x86_64
+
+    - uses: actions/download-artifact@v4
+      with:
+        name: SDL3-steamrt3-aarch64
+        path: SDL3-steamrt3-aarch64
 
     - name: Build fnalibs
       run: ./build-fnalibs.sh
