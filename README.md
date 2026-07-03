@@ -4,4 +4,4 @@ This repository automatically creates archives containing all of the native libs
 
 Note that this archive always targets the latest development version of FNA - compatibility with stable releases is not guaranteed. 
 
-To download the latest fnalibs, go to the [Actions tab](https://github.com/FNA-XNA/fnalibs-dailies/actions) and select the latest "CI" build. At the bottom of the page will be two "artifacts", named fnalibs and fnalibs-apple. Those links are the zip files you want!
+To download the latest fnalibs, go to the [Actions tab](https://github.com/FNA-XNA/fnalibs-dailies/actions) and select the latest "CI" build. At the bottom of the page will be four "artifacts", named fnalibs, fnalibs-apple, fnalibs-wasm-multithreaded, and fnalibs-wasm-singlethreaded. Those links are the zip files you want!

@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
   schedule:
     - cron: '0 0 * * *'
@@ -94,3 +95,57 @@ jobs:
       with:
         name: fnalibs-apple
         path: fnalibs-apple/
+
+  archive-wasm-mt:
+    name: Archive (WASM) - Multithreaded
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: emscripten-core/setup-emsdk@v15
+      with:
+        version: 3.1.56
+
+    - name: Verify Emscripten
+      run: emcc -v
+
+    - name: Make build-fnalibs-wasm.sh executable
+      run: chmod +x ./build-fnalibs-wasm.sh
+
+    - name: Build fnalibs-wasm
+      run: ./build-fnalibs-wasm.sh --pthread-enabled
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Archive fnalibs-wasm
+      uses: actions/upload-artifact@v4
+      with:
+        name: fnalibs-wasm-multithreaded
+        path: fnalibs-wasm-mt/
+
+  archive-wasm-st:
+    name: Archive (WASM) - Single threaded
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: emscripten-core/setup-emsdk@v15
+      with:
+        version: 3.1.56
+
+    - name: Verify Emscripten
+      run: emcc -v
+
+    - name: Make build-fnalibs-wasm.sh executable
+      run: chmod +x ./build-fnalibs-wasm.sh
+
+    - name: Build fnalibs-wasm
+      run: ./build-fnalibs-wasm.sh
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Archive fnalibs-wasm
+      uses: actions/upload-artifact@v4
+      with:
+        name: fnalibs-wasm-singlethreaded
+        path: fnalibs-wasm-st/
